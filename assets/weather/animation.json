@@ -1,0 +1,162 @@
+{
+  "version": 3,
+  "renderer": "layered",
+  "coordinateSystem": "percent of square canvas",
+  "assets": {
+    "cloud-light": "layers/cloud-light.png",
+    "cloud-dark": "layers/cloud-dark.png",
+    "sun-disc": "layers/sun-disc.png",
+    "sun-rays": "layers/sun-rays.png",
+    "raindrop": "layers/raindrop.png",
+    "lightning": "layers/lightning.png",
+    "cloud-thunder-original": "layers/cloud-thunder-original.png"
+  },
+  "conditions": {
+    "sunny": {
+      "layers": [
+        "sun-rays",
+        "sun-disc",
+        "cloud-light"
+      ],
+      "rays": {
+        "durationMs": 40000,
+        "easing": "linear",
+        "rotationDegrees": [
+          0,
+          360
+        ],
+        "origin": "center"
+      },
+      "fixed": [
+        "sun-disc",
+        "cloud-light"
+      ]
+    },
+    "cloudy": {
+      "layers": [
+        "cloud-light",
+        "cloud-light"
+      ],
+      "clouds": [
+        {
+          "role": "front",
+          "durationMs": 20000,
+          "delayMs": -7000,
+          "opacity": 1
+        },
+        {
+          "role": "back",
+          "durationMs": 28000,
+          "delayMs": -18000,
+          "opacity": 0.75
+        }
+      ],
+      "direction": "right",
+      "translateXPercent": [
+        -12,
+        12
+      ],
+      "fadeOffsets": [
+        0,
+        0.08,
+        0.92,
+        1
+      ],
+      "easing": "linear"
+    },
+    "rainy": {
+      "cloud": "cloud-light",
+      "fixedCloud": true,
+      "dropCount": 7,
+      "baseDropDurationMs": 2300
+    },
+    "heavy-rain": {
+      "cloud": "cloud-dark",
+      "fixedCloud": true,
+      "dropCount": 18,
+      "baseDropDurationMs": 1250
+    },
+    "heavy-rain-thunder": {
+      "cloud": "cloud-thunder-original",
+      "fixedCloud": true,
+      "dropCount": 18,
+      "baseDropDurationMs": 1250,
+      "lightning": {
+        "durationMs": 9000,
+        "delayMs": -3000,
+        "easing": "ease-in-out",
+        "opacityKeyframes": [
+          [
+            0,
+            0
+          ],
+          [
+            0.6,
+            0
+          ],
+          [
+            0.69,
+            0.9
+          ],
+          [
+            0.72,
+            0.9
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "placement": {
+          "leftPercent": 43,
+          "topPercent": 52,
+          "widthPercent": 21,
+          "heightPercent": 39,
+          "zIndex": 1,
+          "cloudZIndex": 2,
+          "origin": "Upper edge concealed behind cloud"
+        }
+      }
+    }
+  },
+  "rain": {
+    "direction": "down",
+    "durationIncrementMs": 130,
+    "durationVariants": 4,
+    "phaseFormula": "(index * 0.61803398875 + 0.17) % 1",
+    "translateYPercent": [
+      -100,
+      440
+    ],
+    "opacityKeyframes": [
+      [
+        0,
+        0
+      ],
+      [
+        0.18,
+        0.85
+      ],
+      [
+        0.76,
+        0.85
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "easing": "linear"
+  },
+  "staticPreviews": "Same fixed layers, with staggered static drop positions and a visible thunder bolt. Compact cards have no animated class.",
+  "reducedMotion": "Disable all layer animations and use the static composition.",
+  "pauseWhen": "document hidden or weather panel hidden",
+  "implementation": {
+    "markup": "../../js/weather-art.js",
+    "styles": "../../css/weather.css"
+  }
+}

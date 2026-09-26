@@ -1,0 +1,12 @@
+{
+  "tool": "Built-in imagegen",
+  "prompt": "Use case: precise-object-edit. Edit target: attached earlier watercolor thunder weather icon. Isolate ONLY its original dark slate-blue cloud as a transparent PNG asset. Remove every raindrop and lightning bolt below or in front of the cloud. Preserve the exact cloud silhouette, original fine hand-drawn dark blue outlines, rounded lobes, muted colors, and detailed watercolor pigment texture. Do not redesign, simplify, thicken its outline, brighten, or change the cloud. Reconstruct only tiny portions hidden by lightning if needed. Keep the complete cloud centered with modest transparent margins. No sun, no rain, no bolt, no backdrop, no glow, no shadow, no white page. Genuine transparent alpha outside cloud.",
+  "reference": "../heavy-rain-thunder-preview.png",
+  "output": "cloud-thunder-original.png",
+  "extraction": {
+    "x": 57,
+    "y": 257,
+    "width": 1156,
+    "height": 718
+  }
+}

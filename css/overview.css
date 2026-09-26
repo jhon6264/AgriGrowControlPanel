@@ -1,0 +1,59 @@
+.ov-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border:1px solid #dbe5da; border-radius:22px; background:#fcfdf9; margin-bottom:22px; overflow:hidden; }
+.ov-stat { padding:24px clamp(18px,2.5vw,32px); }
+.ov-stat + .ov-stat { border-left:1px solid #e1e9df; }
+.ov-stat > span { display:block; font-size:13px; color:#5f7567; }
+.ov-stat > strong { display:block; font-size:clamp(30px,3vw,44px); letter-spacing:-1.5px; color:#254e34; margin:7px 0; line-height:1.1; }
+.ov-stat small { font-size:11px; color:#738276; line-height:1.5; }
+.ov-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+.ov-card { border:1px solid #dbe5da; border-radius:24px; background:#fff; padding:clamp(20px,2.5vw,32px); min-width:0; }
+.ov-card header { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:26px; }
+.ov-overline { font:10px 'IBM Plex Mono',monospace; color:#788d7d; letter-spacing:.12em; text-transform:uppercase; }
+.ov-card h2 { font-size:clamp(20px,2vw,25px); color:#234b32; margin:7px 0 0; letter-spacing:-.5px; }
+.ov-link { background:none; border:0; color:#32744a; padding:7px 0; font-size:12px; font-weight:600; white-space:nowrap; }
+.ov-link:hover { text-decoration:underline; }
+.ov-caption { font-size:11px; color:#7c8a80; margin:24px 0 0; line-height:1.6; }
+.ov-categories { display:flex; flex-direction:column; }
+#overview-categories { flex:1; display:flex; flex-direction:column; justify-content:space-evenly; }
+.ov-bar-row { margin:24px 0; }
+.ov-bar-row > div:first-child { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:11px; }
+.ov-bar-row strong { font-size:14px; color:#31563b; }
+.ov-bar-row small { font-size:11px; color:#7a8b7e; font-weight:400; }
+.ov-bar-row b { margin-left:auto; color:#274d32; font-size:16px; }
+.ov-track { height:13px; background:#f1f5ef; border-radius:5px; overflow:hidden; }
+.ov-bar { display:block; height:100%; border-radius:5px; background:#398252; }
+.ov-bar.fruit { background:#c4a159; } .ov-bar.spice { background:#8e9d79; }
+.ov-mover { margin:17px 0; }
+.ov-mover > div:first-child { display:flex; justify-content:space-between; gap:12px; font-size:13px; }
+.ov-mover strong { font-weight:500; overflow-wrap:anywhere; }
+.ov-mover > small { display:block; font-size:10px; color:#7b8b80; margin-top:5px; }
+.ov-up { color:#287746; } .ov-down { color:#af6955; }
+.ov-diverging { position:relative; height:10px; margin-top:9px; background:linear-gradient(to right,#fcf2ed 50%,#edf5ea 50%); border-radius:4px; }
+.ov-diverging:after { content:''; position:absolute; left:50%; top:-2px; height:14px; width:1px; background:#b9c9b9; }
+.ov-diverging > span { position:absolute; top:0; height:100%; border-radius:3px; }
+.ov-positive { background:#43885a; } .ov-negative { background:#c28b76; }
+.ov-weather { background:linear-gradient(120deg,#fffbed,#f4f8ef); }
+.ov-weather-current { display:grid; grid-template-columns:1fr 1fr; gap:15px; align-items:center; }
+.ov-weather-art { width:100%; max-width:230px; }
+.ov-weather-current h3 { font-size:clamp(18px,1.7vw,25px); margin:8px 0; color:#244b32; }
+.ov-temperature { font-size:clamp(43px,4vw,65px); letter-spacing:-3px; font-weight:500; line-height:1.15; color:#244b32; }
+.ov-temperature small { font-size:.5em; vertical-align:top; letter-spacing:-1px; }
+.ov-weather-current p { font-size:12px; color:#6b7e6d; margin-top:10px; }
+.ov-weather-details { grid-column:1/-1; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid #dce5d5; padding-top:20px; margin:5px 0 0; gap:12px; }
+.ov-weather-details dt { font-size:11px; color:#728270; font-weight:400; }
+.ov-weather-details dd { font-size:21px; color:#2c5738; margin:6px 0 0; }
+.ov-weather-details small { font-size:11px; }
+.ov-legend { display:flex; gap:15px; color:#6b7c70; font-size:11px; margin:5px 0 18px; }
+.ov-legend i { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; background:#377c4b; }
+.ov-legend span:last-child i { background:#bbcdaa; }
+.ov-forecast-card { display:flex; flex-direction:column; }
+.ov-forecast-card #overview-forecast { flex:1; display:flex; align-items:center; }
+#overview-forecast { overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; }
+#overview-forecast::-webkit-scrollbar { display:none; }
+#overview-forecast svg { width:100%; min-width:500px; display:block; overflow:visible; }
+#overview-forecast text { font:12px 'IBM Plex Sans',sans-serif; fill:#36553e; }
+#overview-forecast .ov-date { font-size:10px; fill:#829081; }
+.ov-range-line { stroke:#d5e3ca; stroke-width:12; stroke-linecap:round; }
+.ov-high { fill:#377c4b; } .ov-low { fill:#aec59c; } .ov-grid-line { stroke:#e9eee4; }
+.ov-empty { padding:30px 0; color:#7b897e; font-size:13px; line-height:1.6; }
+@media(max-width:800px) { .ov-grid { grid-template-columns:1fr; } .ov-stat { padding:20px 14px; } .ov-stat small { font-size:10px; } #overview-categories { display:block; } .ov-forecast-card #overview-forecast { display:block; } }
+@media(max-width:520px) { .ov-stats { grid-template-columns:repeat(2,minmax(0,1fr)); } .ov-stat:nth-child(3) { grid-column:1/-1; border-left:0; border-top:1px solid #e1e9df; } .ov-stat { padding:18px; } .ov-stat > strong { font-size:32px; } .ov-card header { gap:8px; } .ov-link { font-size:11px; } .ov-bar-row > div:first-child { gap:5px; } }

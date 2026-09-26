@@ -1,0 +1,185 @@
+{
+  "version": 2,
+  "columns": 6,
+  "rows": 4,
+  "frameCount": 24,
+  "durationMs": 2000,
+  "sheetWidth": 1536,
+  "sheetHeight": 1024,
+  "frameWidth": 256,
+  "frameHeight": 256,
+  "frames": [
+    {
+      "x": 0,
+      "y": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 256,
+      "y": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 512,
+      "y": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 768,
+      "y": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 1024,
+      "y": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 1280,
+      "y": 0,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 0,
+      "y": 256,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 256,
+      "y": 256,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 512,
+      "y": 256,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 768,
+      "y": 256,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 1024,
+      "y": 256,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 1280,
+      "y": 256,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 0,
+      "y": 512,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 256,
+      "y": 512,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 512,
+      "y": 512,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 768,
+      "y": 512,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 1024,
+      "y": 512,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 1280,
+      "y": 512,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 0,
+      "y": 768,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 256,
+      "y": 768,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 512,
+      "y": 768,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 768,
+      "y": 768,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 1024,
+      "y": 768,
+      "width": 256,
+      "height": 256
+    },
+    {
+      "x": 1280,
+      "y": 768,
+      "width": 256,
+      "height": 256
+    }
+  ],
+  "conditions": {
+    "sunny": {
+      "sheet": "sunny-24.png",
+      "preview": "sunny-24-preview.png",
+      "previewFrame": 0
+    },
+    "cloudy": {
+      "sheet": "cloudy-24.png",
+      "preview": "cloudy-24-preview.png",
+      "previewFrame": 0
+    },
+    "rainy": {
+      "sheet": "rainy-24.png",
+      "preview": "rainy-24-preview.png",
+      "previewFrame": 0
+    },
+    "heavy-rain": {
+      "sheet": "heavy-rain-24.png",
+      "preview": "heavy-rain-24-preview.png",
+      "previewFrame": 0
+    },
+    "heavy-rain-thunder": {
+      "sheet": "heavy-rain-thunder-24.png",
+      "preview": "heavy-rain-thunder-24-preview.png",
+      "previewFrame": 10
+    }
+  },
+  "fps": 12
+}

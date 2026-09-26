@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#166534">
+  <title>AgriGrow Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/weather.css" rel="stylesheet">
+  <link href="css/overview.css" rel="stylesheet">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="nav-shell">
+      <nav class="segmented-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="overview" type="button" aria-current="page">Overview</button>
+        <button class="nav-item" data-view="prices" type="button">Market Prices</button>
+        <button class="nav-item" data-view="weather" type="button">Weather</button>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <div id="pull-indicator" class="pull-indicator" role="status" aria-live="polite" hidden>Pull to refresh</div>
+      <header class="topbar">
+        <div class="page-heading"><h1 id="page-title">Overview</h1></div>
+        <div id="prices-controls" class="prices-controls" hidden>
+          <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="prices-search" type="search" placeholder="Search products" aria-label="Search price records"></label>
+          <button class="btn btn-success add-button" data-add="prices" type="button">+ Add product</button>
+          <div class="dropdown">
+            <button id="prices-filter-button" class="btn filter-button dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Filter market prices">Filter</button>
+            <div class="dropdown-menu filter-menu dropdown-menu-end">
+              <input id="prices-category" type="hidden" value="">
+              <button class="dropdown-item category-option active" data-category="" type="button" aria-pressed="true">All categories</button>
+              <button class="dropdown-item category-option" data-category="fruit" type="button" aria-pressed="false">Fruits</button>
+              <button class="dropdown-item category-option" data-category="vegetable" type="button" aria-pressed="false">Vegetables</button>
+              <button class="dropdown-item category-option" data-category="spice" type="button" aria-pressed="false">Spices</button>
+              <div class="dropdown-divider"></div>
+              <label class="archive-toggle"><input id="prices-archived" type="checkbox"> Show deleted</label>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div id="alert-area" role="status" aria-live="polite"></div>
+
+      <section id="overview-panel" class="content-panel">
+        <div id="overview-stats" class="ov-stats" aria-label="Market price summary"></div>
+        <div class="ov-grid">
+          <article class="ov-card ov-categories"><header><div><span class="ov-overline">Market snapshot</span><h2>Prices by category</h2></div><button class="ov-link" data-view="prices" type="button">View market ↗</button></header><div id="overview-categories"></div><p class="ov-caption">Average current price per kilogram · Demo data for Davao del Sur.</p></article>
+          <article class="ov-card ov-weather"><header><div><span class="ov-overline">Davao del Sur</span><h2>Weather today</h2><small id="overview-weather-date"></small></div><button class="ov-link" data-view="weather" type="button">View weather ↗</button></header><div id="overview-weather-current" class="ov-weather-current"></div><p id="overview-weather-note" class="ov-caption"></p></article>
+          <article class="ov-card"><header><div><span class="ov-overline">Market movements</span><h2>Biggest price moves</h2></div></header><div id="overview-movers"></div><p class="ov-caption">Five largest percentage changes against each product’s previous saved price. Bar lengths use a compressed scale to keep smaller changes visible.</p></article>
+          <article class="ov-card ov-forecast-card"><header><div><span class="ov-overline">Seven-day outlook</span><h2>Temperature range</h2></div></header><div class="ov-legend"><span><i></i>Daily high</span><span><i></i>Daily low</span></div><div id="overview-forecast" tabindex="0" aria-label="Seven-day temperature chart; scroll horizontally on narrow screens"></div></article>
+        </div>
+      </section>
+
+      <section id="prices-panel" class="content-panel" hidden><div class="surface-card table-card market-board"><div class="table-responsive"><table class="table data-table market-table align-middle"><thead><tr><th>PRODUCT NAME</th><th>CATEGORY</th><th>PRICE CHANGE</th><th class="text-end">PRICE</th></tr></thead><tbody id="prices-body"></tbody></table></div><div id="prices-empty" class="empty-state" hidden>No products match this view.</div><div class="board-foot">Prices shown in PHP per kilogram · Demo data for Davao del Sur</div></div></section>
+
+      <section id="weather-panel" class="content-panel" hidden>
+        <div class="weather-location"><span>Davao del Sur</span><time id="weather-clock" aria-label="Current Philippine time"></time></div>
+        <p id="weather-status" class="weather-status" role="status"></p>
+        <article id="weather-main" class="weather-main" aria-label="Selected day's weather"></article>
+        <div class="weather-next-heading"><h2>Other days</h2></div>
+        <div id="weather-upcoming" class="weather-upcoming"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal fade" id="record-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h2 class="modal-title" id="modal-title">Add record</h2><button type="button" class="modal-close" data-bs-dismiss="modal">Close</button></div><div class="modal-body">
+    <form id="prices-form" class="record-form" hidden>
+      <div class="form-grid"><label>Product name <input name="commodityName" class="form-control" maxlength="80" required placeholder="e.g. Tomato (Kamatis)"></label><div class="form-field"><label for="product-category-trigger">Category</label><div class="dropdown product-category-dropdown"><input name="category" type="hidden" value="fruit"><button id="product-category-trigger" class="form-select product-category-trigger" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Fruit</button><div class="dropdown-menu product-category-menu"><button class="dropdown-item product-category-option active" type="button" data-product-category="fruit" aria-pressed="true">Fruit</button><button class="dropdown-item product-category-option" type="button" data-product-category="vegetable" aria-pressed="false">Vegetable</button><button class="dropdown-item product-category-option" type="button" data-product-category="spice" aria-pressed="false">Spice</button></div></div></div><label>Price (PHP per kg) <input name="amount" class="form-control" type="number" min="0.01" step="0.01" required placeholder="0.00"></label></div><p class="form-note">Price movement is calculated from the previous saved price. Location is fixed to Davao del Sur.</p>
+    </form>
+
+  </div><div class="modal-footer"><button id="delete-button" type="button" class="btn btn-danger me-auto" hidden>Delete</button><button id="save-button" type="button" class="btn btn-success">Save record</button></div></div></div></div>
+
+  <div class="modal fade" id="weather-modal" tabindex="-1" aria-labelledby="weather-modal-title" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h2 class="modal-title" id="weather-modal-title">Edit period</h2><button type="button" class="modal-close" data-bs-dismiss="modal">Close</button></div>
+    <div class="modal-body"><p id="weather-edit-context" class="form-note"></p><div id="weather-edit-error" class="text-danger" role="alert"></div>
+      <form id="weather-edit-form" class="record-form"><div class="form-grid">
+        <div class="form-field weather-condition-field"><label for="weather-condition-trigger">Condition</label><div class="dropdown"><input name="condition" type="hidden"><button id="weather-condition-trigger" class="form-select" type="button" data-bs-toggle="dropdown" aria-expanded="false">Cloudy</button><div id="weather-condition-options" class="dropdown-menu product-category-menu"></div></div></div>
+        <label>Temperature (°C)<input name="temperatureC" class="form-control" type="number" min="10" max="45" step="0.1" required></label>
+        <label>Rain chance (%)<input name="rainChancePct" class="form-control" type="number" min="0" max="100" step="1" required></label>
+        <label>Humidity (%)<input name="humidityPct" class="form-control" type="number" min="0" max="100" step="1" required></label>
+        <label>Wind (km/h)<input name="windKph" class="form-control" type="number" min="0" max="150" step="0.1" required></label>
+      </div><p class="form-note">Simulated weather. Reset restores this period’s generated values.</p></form>
+    </div><div class="modal-footer"><button id="weather-reset" type="button" class="btn btn-light me-auto">Reset period</button><button id="weather-save" type="submit" form="weather-edit-form" class="btn btn-success">Save changes</button></div>
+  </div></div></div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="app-toast" class="toast" role="status" aria-live="polite"><div class="toast-body" id="toast-message"></div></div></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
